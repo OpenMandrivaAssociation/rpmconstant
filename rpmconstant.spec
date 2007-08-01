@@ -1,26 +1,24 @@
-# This rpm is in the SVN
-# $Id: rpmconstant.spec 36944 2006-06-11 13:44:56Z nanardon $
+%define name	rpmconstant
+%define version	0.1.2
+%define release	%mkrel 2
 
-%define name rpmconstant
-%define version 0.1.2
-%define release %mkrel 1
+%define major		0
+%define libname		%mklibname %name %major
+%define develname	%mklibname %name -d
 
-%define major 0
-%define libname %mklibname %name %major
-
-Summary: A library to bind rpm constant
+Summary: A library to bind RPM constant values
 Name: %{name}
 Version: %{version}
 Release: %{release}
-Source0: http://rpm.zarb.org/download/%{name}-%{version}.tar.bz2
-License: LGPL 
+Source0: http://rpm4.zarb.org/download/%{name}-%{version}.tar.bz2
+License: LGPLv2.1
 Group: Development/C
 Url: http://rpm.zarb.org/
 BuildRoot: %{_tmppath}/%{name}-buildroot
 BuildRequires: rpm-devel
 
 %description
-This library provides basics functions to map internal rpm constant value
+This library provides basic functions to map internal RPM constant values
 with their name. This is useful for perl/python or other language which has
 binding over rpmlib.
 
@@ -34,14 +32,15 @@ This library provides basics functions to map internal rpm constant value
 with their name. This is useful for perl/python or other language which has
 binding over rpmlib.
 
-%package -n %libname-devel
+%package -n %develname
 Summary: Development files from librpmconstant
 Group: Development/C
 Provides: %name-devel = %version-%release
 Provides: lib%{name}-devel = %version-%release
 Requires: %libname = %version-%release
+Obsoletes: %mklibname rpmconstant 0 -d
 
-%description -n %libname-devel
+%description -n %develname
 This library provides basics functions to map internal rpm constant value
 with their name. This is useful for perl/python or other language which has
 binding over rpmlib.
@@ -72,10 +71,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n %libname
 %defattr(-,root,root)
-%doc AUTHORS ChangeLog README
 %_libdir/lib%name.so.*
 
-%files -n %libname-devel
+%files -n %develname
 %defattr(-,root,root)
 %doc constant.c AUTHORS ChangeLog README
 %_includedir/%name/%name.h
