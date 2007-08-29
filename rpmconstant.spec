@@ -1,6 +1,6 @@
 %define name	rpmconstant
-%define version	0.1.2
-%define release	%mkrel 2
+%define version	0.1.3
+%define release	%mkrel 1
 
 %define major		0
 %define libname		%mklibname %name %major
@@ -10,7 +10,7 @@ Summary: A library to bind RPM constant values
 Name: %{name}
 Version: %{version}
 Release: %{release}
-Source0: http://rpm4.zarb.org/download/%{name}-%{version}.tar.bz2
+Source0: http://rpm4.zarb.org/download/%{name}-%{version}.tar.gz
 License: LGPLv2.1
 Group: Development/C
 Url: http://rpm.zarb.org/
