@@ -14,7 +14,6 @@ Source0: http://rpm4.zarb.org/download/%{name}-%{version}.tar.gz
 License: LGPLv2.1
 Group: Development/C
 Url: http://rpm.zarb.org/
-BuildRoot: %{_tmppath}/%{name}-buildroot
 BuildRequires: rpm-devel
 
 %description
