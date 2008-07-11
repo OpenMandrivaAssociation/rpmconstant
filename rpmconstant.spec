@@ -8,7 +8,7 @@
 Summary: A library to bind RPM constant values
 Name: %{name}
 Version: %{version}
-Release: %mkrel 3
+Release: %mkrel 4
 Source0: http://rpm4.zarb.org/download/%{name}-%{version}.tar.gz
 License: LGPLv2.1
 Group: Development/C
@@ -50,6 +50,7 @@ You need this package to build applications using librpmconstant.
 %setup -q
 
 %build
+rm -f rpmconstanttbl.c # Ensure this file is regenated
 %configure
 %make
 
