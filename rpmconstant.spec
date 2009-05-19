@@ -53,7 +53,7 @@ You need this package to build applications using librpmconstant.
 
 %build
 mv rpmconstanttbl.c rpmconstanttbl.c.old # Ensure this file is regenated
-%configure
+%configure2_5x
 %make
 
 %install
