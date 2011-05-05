@@ -8,7 +8,7 @@
 Summary: A library to bind RPM constant values
 Name: %{name}
 Version: %{version}
-Release: %mkrel 9
+Release: %mkrel 10
 Source0: http://rpm4.zarb.org/download/%{name}-%{version}.tar.gz
 Patch0: rpmconstant-fix-build-rpm46.patch
 License: LGPLv2.1
