@@ -1,0 +1,80 @@
+diff -p -up rpmconstant-0.1.3/rpmconstant.h.rpm46 rpmconstant-0.1.3/rpmconstant.h
+--- rpmconstant-0.1.3/rpmconstant.h.rpm46	2005-12-20 02:35:11.000000000 +0100
++++ rpmconstant-0.1.3/rpmconstant.h	2009-01-12 16:40:38.000000000 +0100
+@@ -32,9 +32,11 @@
+ #include <rpm/rpmds.h>
+ #include <rpm/rpmfi.h>
+ #include <rpm/rpmpgp.h>
+-#include <rpm/misc.h>
++#include <rpm/rpmtag.h>
++#include <rpm/rpmvf.h>
+ #include <rpm/rpmbuild.h>
+ #include <rpm/rpmlib.h>
++#include <rpm/rpmlog.h>
+ 
+ /**
+  * A constant pair name/value
+diff -p -up rpmconstant-0.1.3/rpmh2tbl.pix rpmconstant-0.1.3/rpmh2tbl
+--- rpmconstant-0.1.3/rpmh2tbl.pix	2005-12-20 02:35:11.000000000 +0100
++++ rpmconstant-0.1.3/rpmh2tbl	2009-01-12 15:52:44.000000000 +0100
+@@ -34,30 +34,32 @@ my @availlabletables;
+ my %file_const = (
+     'rpmts.h' => {
+         '^_?(RPMVSF_[\w_]+)' => 'rpmvsflags',
++        '^(RPMTRANS_FLAG_[\w_]+)' => 'rpmtransFlags',
+         '^(RPMTRANS_TYPE_[\w_]+)' => 'rpmtsType',
+         '^(RPMTS_OP_[\w_]+)' => 'rpmtsOpX',
+     },
+     'rpmlib.h' => {
+-        '^(RPMDBI_[\w_]+)' => 'rpmdbi',
++        '^(RPM_MACHTABLE_[\w_]+)' => 'rpm_machtable',
++        '^(INSTALL_[\w_]+)' => 'rpmInstallInterfaceFlags',
++        '^(UNINSTALL_[\w_]+)' => 'rpmEraseInterfaceFlags',
++    },
++    'rpmds.h' => {
+         '^_?(RPMSENSE_[\w_]+)' => 'rpmsenseflags',
+-        '^(RPMTAG_[\w_]+)' => 'rpmTag',
+-        '^(RPMRC_[\w_]+)' => 'rpmRC',
++    },
++    'rpmfi.h' => {
+         '^(RPMFILE_[^(STATE_)][\w_]+)' => 'rpmfileAttrs',
+         '^(RPMFILE_STATE_[\w_]+)' => 'rpmfileState',
+-        '^(RPM_MACHTABLE_[\w_]+)' => 'rpm_machtable',
+-        '^(RPMPROB_FILTER_[\w_]+)' => 'rpmprobFilterFlags',
+-        '^(FA_[\w_]+)' => 'fileAction',
+         '^(PIPE|CDEV|XDIR|BDEV|REG|LINK|SOCK)$' => 'fileTypes',
+-        '^(RPMTRANS_FLAG_[\w_]+)' => 'rpmtransFlags',
+-        '^(INSTALL_[\w_]+)' => 'rpmInstallInterfaceFlags',
+-        '^(UNINSTALL_[\w_]+)' => 'rpmEraseInterfaceFlags',
+-        '^(RPMSIGTAG_[\w_]+)' => 'rpmtagSignature',
++        '^(FA_[\w_]+)' => 'fileAction',
+     },
+     'rpmps.h' => {
+-        '^(RPMPROB_[\w_]+)' => 'rpmProblemType',
++        '^(RPMPROB_FILTER_[\w_]+)' => 'rpmprobFilterFlags',
++        '^(RPMPROB_[^(FILTER_)][\w_]+)' => 'rpmProblemType',
+     },
+     'rpmcli.h' => {
+         '^(RPMSIGN_[\w_]+)' => 'rpmSignFlags',
++    },
++    'rpmvf.h' => {
+         '^(VERIFY_[\w_]+)' => 'rpmVerifyFlags',
+     },
+     'rpmdb.h' => {
+@@ -65,8 +67,16 @@ my %file_const = (
+     },
+     'header.h' => {
+         '^(HEADER_MAGIC_[\w_]+)' => 'hMagic',
++    },
++    'rpmtag.h' => {
++        '^(RPMTAG_[\w_]+)' => 'rpmTag',
++        '^(RPMDBI_[\w_]+)' => 'rpmdbi',
++        '^(RPMSIGTAG_[\w_]+)' => 'rpmtagSignature',
+         '^(RPM_[\w]+)_TYPE$' => 'rpmTagType',
+     },
++    'rpmtypes.h' => {
++        '^(RPMRC_[\w_]+)' => 'rpmRC',
++    },
+     'rpmbuild.h' => {
+         '^(RPMBUILD_[\w_]+)' => 'rpmBuildFlags',
+         '^(PART_[\w_]+)' => 'rpmParseState',
